@@ -7,7 +7,9 @@ indent_size = 4
 indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
-
+[*.{tsx,ts,php}]
+indent_style = space
+indent_size = 1
 [*.md]
 trim_trailing_whitespace = false
 
