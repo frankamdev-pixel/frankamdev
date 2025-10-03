@@ -1,0 +1,20 @@
+@keyframes orbit1 {
+  from { transform: rotate(0deg) translateX(8rem) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(8rem) rotate(-360deg); }
+}
+
+@keyframes orbit2 {
+  from { transform: rotate(0deg) translateX(12rem) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(12rem) rotate(-360deg); }
+}
+
+@keyframes orbit3 {
+  from { transform: rotate(0deg) translateX(16rem) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(16rem) rotate(-360deg); }
+}
+
+@media (max-width: 640px) {
+  @keyframes orbit1 { from { transform: rotate(0deg) translateX(5rem) rotate(0deg); } to { transform: rotate(360deg) translateX(5rem) rotate(-360deg); } }
+  @keyframes orbit2 { from { transform: rotate(0deg) translateX(8rem) rotate(0deg); } to { transform: rotate(360deg) translateX(8rem) rotate(-360deg); } }
+  @keyframes orbit3 { from { transform: rotate(0deg) translateX(11rem) rotate(0deg); } to { transform: rotate(360deg) translateX(11rem) rotate(-360deg); } }
+}
