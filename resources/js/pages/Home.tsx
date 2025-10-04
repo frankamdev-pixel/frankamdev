@@ -47,7 +47,7 @@ export default function Home() {
 
     return (
         <>
-            <DropletBackground>
+            
                 <div className="flex min-h-screen flex-col bg-[#020013] text-white">
                     <ToastContainer
                         position="top-right"
@@ -154,7 +154,7 @@ export default function Home() {
 
                     <Footer />
                 </div>
-            </DropletBackground>
+            
         </>
     );
 }
