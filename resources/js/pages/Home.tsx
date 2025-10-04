@@ -150,7 +150,6 @@ export default function Home() {
                         <AnotherQuestion />
                     </motion.section>
 
-                    
                     <CercleRotate />
 
                     <Footer />
