@@ -1,12 +1,10 @@
 <?php
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TestimonialController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
-// Route::get('/', function () {
-//   return Inertia::render('welcome');
-// });
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {

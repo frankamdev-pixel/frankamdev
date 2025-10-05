@@ -21,13 +21,16 @@ const Navbar = () => {
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     const navLinks = [
-        { name: 'Accueil', href: '/', icon: <Home size={16} /> },
-        {
-            name: 'Formations',
+
+    {
+   
+              name: 'Tableau de bord', href: 'dashboard', icon: <Home size={16} /> 
+            },         
+{          name: 'Formations',
             href: '/formations',
             icon: <BookOpen size={16} />,
         },
-        { name: 'À propos', href: '/about', icon: <Info size={16} /> },
+      
         { name: 'Contact', href: '/contact', icon: <Mail size={16} /> },
         {
             name: 'Dashboard',
@@ -91,8 +94,8 @@ const Navbar = () => {
 
                     {/* Avatar / Dropdown */}
                     <div className="relative ml-4" ref={dropdownRef}>
-                        <button
-                            onClick={() => setDropdownOpen(!dropdownOpen)}
+                        <div
+                             onClick={() => setDropdownOpen(!dropdownOpen)}
                             className="group relative flex items-center gap-2 text-white focus:outline-none"
                         >
                             {auth.user?.profile_photo_url ? (
@@ -113,17 +116,24 @@ const Navbar = () => {
                                     {auth.user.name.charAt(0)}
                                 </div>
                             ) : (
-                                <div className="rounded bg-blue-600 px-4 py-2 text-white">
-                                    Menu
-                                </div>
+                                <Link href="/login" className="rounded bg-blue-600 px-4 py-2 text-white">
+                                    Se Connecter
+                                </Link>
                             )}
-                            <ChevronDown
-                                className={`transform text-white transition-transform ${
-                                    dropdownOpen ? 'rotate-180' : 'rotate-0'
-                                }`}
-                                size={16}
-                            />
-                        </button>
+                            {
+
+                              auth.user ? (
+                                <ChevronDown
+                                    className={`transform text-white transition-transform ${
+                                        dropdownOpen ? 'rotate-180' : 'rotate-0'
+                                    }`}
+                                    size={16}
+                                />
+
+                              ): null
+
+                            }
+                        </div>
 
                         {/* Dropdown */}
                         <Transition
