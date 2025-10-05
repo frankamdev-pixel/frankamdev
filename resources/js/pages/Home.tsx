@@ -3,7 +3,6 @@ import CardBuild from '@/components/CardBuild';
 import CardTestimanial from '@/components/CardTestimonials';
 import CercleRotate from '@/components/CercleRotate';
 import Compagnies from '@/components/Compagnies';
-import DropletBackground from '@/components/DropletBackground';
 import Footer from '@/components/Footer';
 import MeetMe from '@/components/MeetMe';
 import NavBar from '@/components/NavBar';
@@ -19,19 +18,22 @@ import { FaArrowRight } from 'react-icons/fa6';
 import { ToastContainer, toast } from 'react-toastify';
 import Hero from '../components/Hero';
 
+
 const sectionVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
-        opacity: 1,
+        opacity: 1,                   
         y: 0,
         transition: { duration: 0.6, ease: 'easeOut' },
     },
 };
 
+
 interface FlashMessage {
     success?: string;
     error?: string;
 }
+
 
 interface Props {
     flash: FlashMessage | null;
@@ -47,7 +49,6 @@ export default function Home() {
 
     return (
         <>
-            
                 <div className="flex min-h-screen flex-col bg-[#020013] text-white">
                     <ToastContainer
                         position="top-right"
@@ -65,6 +66,7 @@ export default function Home() {
                     <NavBar />
 
                     <Hero />
+           
                     {/* Témoignages */}
                     <section className="">
                         <Testimonial />

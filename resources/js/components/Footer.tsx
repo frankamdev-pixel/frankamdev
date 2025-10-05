@@ -1,3 +1,4 @@
+import DarkModeToggle from '@/pages/DarkModeToggle';
 import { Link } from '@inertiajs/react';
 
 import { FaEnvelope, FaGithub, FaInstagram, FaLinkedin, FaXTwitter, FaYoutube } from 'react-icons/fa6';
@@ -47,7 +48,7 @@ export default function Footer() {
      </button>
     </div>
    </div>
-
+ 
   </footer>
  );
 }

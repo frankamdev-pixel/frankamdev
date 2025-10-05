@@ -1,7 +1,8 @@
 import RegisteredUserController from '@/actions/App/Http/Controllers/Auth/RegisteredUserController';
 import { login } from '@/routes';
 import { Form, Head } from '@inertiajs/react';
-import { LoaderCircle } from 'lucide-react';
+import { LoaderCircle, X } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 import InputError from '@/components/input-error';
 import TextLink from '@/components/text-link';
@@ -11,107 +12,165 @@ import { Label } from '@/components/ui/label';
 import AuthLayout from '@/layouts/auth-layout';
 
 export default function Register() {
-    return (
-        <AuthLayout
-            title="Create an account"
-            description="Enter your details below to create your account"
+  const [preview, setPreview] = useState<string | null>(null);
+
+  return (
+    <AuthLayout
+      title="Create Your Account"
+      description="Sign up quickly and start your journey"
+    >
+      <Head title="Register" />
+      <div className="max-w-lg mx-auto bg-white shadow-lg rounded-xl p-8 md:p-10 space-y-6">
+        <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800">
+          Create an Account
+        </h2>
+        <p className="text-center text-gray-500">Fill in your details to get started</p>
+
+        <Form
+          {...RegisteredUserController.store.form()}
+          resetOnSuccess={['password', 'password_confirmation', 'profile_photo']}
+          disableWhileProcessing
+          className="flex flex-col gap-6"
+          encType="multipart/form-data"
         >
-            <Head title="Register" />
-            <Form
-                {...RegisteredUserController.store.form()}
-                resetOnSuccess={['password', 'password_confirmation']}
-                disableWhileProcessing
-                className="flex flex-col gap-6"
-            >
-                {({ processing, errors }) => (
-                    <>
-                        <div className="grid gap-6">
-                            <div className="grid gap-2">
-                                <Label htmlFor="name">Name</Label>
-                                <Input
-                                    id="name"
-                                    type="text"
-                                    required
-                                    autoFocus
-                                    tabIndex={1}
-                                    autoComplete="name"
-                                    name="name"
-                                    placeholder="Full name"
-                                />
-                                <InputError
-                                    message={errors.name}
-                                    className="mt-2"
-                                />
-                            </div>
+          {({ processing, errors, data, setData }) => {
+            useEffect(() => {
+              if (data?.profile_photo instanceof File) {
+                const url = URL.createObjectURL(data.profile_photo);
+                setPreview(url);
+                return () => URL.revokeObjectURL(url);
+              } else {
+                setPreview(null);
+              }
+            }, [data?.profile_photo]);
 
-                            <div className="grid gap-2">
-                                <Label htmlFor="email">Email address</Label>
-                                <Input
-                                    id="email"
-                                    type="email"
-                                    required
-                                    tabIndex={2}
-                                    autoComplete="email"
-                                    name="email"
-                                    placeholder="email@example.com"
-                                />
-                                <InputError message={errors.email} />
-                            </div>
+            return (
+              <>
+                <div className="grid gap-5">
+                  {/* Name */}
+                  <div className="grid gap-2">
+                    <Label htmlFor="name">Full Name</Label>
+                    <Input
+                      id="name"
+                      type="text"
+                      required
+                      autoFocus
+                      name="name"
+                      placeholder="John Doe"
+                      className="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+                    />
+                    <InputError message={errors.name} />
+                  </div>
 
-                            <div className="grid gap-2">
-                                <Label htmlFor="password">Password</Label>
-                                <Input
-                                    id="password"
-                                    type="password"
-                                    required
-                                    tabIndex={3}
-                                    autoComplete="new-password"
-                                    name="password"
-                                    placeholder="Password"
-                                />
-                                <InputError message={errors.password} />
-                            </div>
+                  {/* Email */}
+                  <div className="grid gap-2">
+                    <Label htmlFor="email">Email Address</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      required
+                      name="email"
+                      placeholder="example@email.com"
+                      className="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+                    />
+                    <InputError message={errors.email} />
+                  </div>
 
-                            <div className="grid gap-2">
-                                <Label htmlFor="password_confirmation">
-                                    Confirm password
-                                </Label>
-                                <Input
-                                    id="password_confirmation"
-                                    type="password"
-                                    required
-                                    tabIndex={4}
-                                    autoComplete="new-password"
-                                    name="password_confirmation"
-                                    placeholder="Confirm password"
-                                />
-                                <InputError
-                                    message={errors.password_confirmation}
-                                />
-                            </div>
+                  {/* Password */}
+                  <div className="grid gap-2">
+                    <Label htmlFor="password">Password</Label>
+                    <Input
+                      id="password"
+                      type="password"
+                      required
+                      name="password"
+                      placeholder="••••••••"
+                      className="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+                    />
+                    <InputError message={errors.password} />
+                  </div>
 
-                            <Button
-                                type="submit"
-                                className="mt-2 w-full"
-                                tabIndex={5}
-                                data-test="register-user-button"
-                            >
-                                {processing && (
-                                    <LoaderCircle className="h-4 w-4 animate-spin" />
-                                )}
-                                Create account
-                            </Button>
-                        </div>
+                  {/* Confirm Password */}
+                  <div className="grid gap-2">
+                    <Label htmlFor="password_confirmation">Confirm Password</Label>
+                    <Input
+                      id="password_confirmation"
+                      type="password"
+                      required
+                      name="password_confirmation"
+                      placeholder="••••••••"
+                      className="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+                    />
+                    <InputError message={errors.password_confirmation} />
+                  </div>
 
-                        <div className="text-center text-sm text-muted-foreground">
-                            Already have an account?{' '}
-                            <TextLink href={login()} tabIndex={6}>
-                                Log in
-                            </TextLink>
-                        </div>
-                    </>
-                )}
-            </Form>
-        </AuthLayout>
-    );
+                  {/* Profile Photo */}
+                  <div className="grid gap-2">
+                    <Label htmlFor="profile_photo">Profile Photo (optional)</Label>
+                    <Input
+                      id="profile_photo"
+                      type="file"
+                      accept="image/*"
+                      name="profile_photo"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0] ?? null;
+                        setData('profile_photo', file);
+                      }}
+                    />
+                    <InputError message={errors.profile_photo} />
+                  </div>
+
+                  {/* Photo Preview */}
+                  {preview && (
+                    <div className="flex items-center gap-4 mt-2 bg-gray-50 p-3 rounded-lg border border-gray-200">
+                      <img
+                        src={preview}
+                        alt="Preview"
+                        className="h-20 w-20 rounded-full object-cover border"
+                      />
+                      <div className="flex flex-col gap-2">
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setData('profile_photo', null)}
+                        >
+                          Remove
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="secondary"
+                          size="sm"
+                          onClick={() => document.getElementById('profile_photo')?.click()}
+                        >
+                          Change
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Submit */}
+                  <Button
+                    type="submit"
+                    className="w-full mt-4 py-2 flex justify-center items-center gap-2"
+                    disabled={processing}
+                  >
+                    {processing && <LoaderCircle className="h-5 w-5 animate-spin" />}
+                    Create Account
+                  </Button>
+                </div>
+
+                <p className="text-center text-gray-500 text-sm mt-4">
+                  Already have an account?{' '}
+                  <TextLink href={login()} className="text-indigo-600 font-medium">
+                    Log in
+                  </TextLink>
+                </p>
+              </>
+            );
+          }}
+        </Form>
+      </div>
+    </AuthLayout>
+  );
 }
