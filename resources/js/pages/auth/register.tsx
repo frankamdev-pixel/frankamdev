@@ -64,13 +64,13 @@ export default function Register() {
 
                   {/* Email */}
                   <div className="grid gap-2">
-                    <Label htmlFor="email">Email Address</Label>
+                    <Label htmlFor="email">Addresse Email</Label>
                     <Input
                       id="email"
                       type="email"
                       required
                       name="email"
-                      placeholder="example@email.com"
+                      placeholder="FrankamDev@email.com"
                       className="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
                     />
                     <InputError message={errors.email} />
@@ -174,3 +174,10 @@ export default function Register() {
     </AuthLayout>
   );
 }
+
+
+
+
+
+
+
