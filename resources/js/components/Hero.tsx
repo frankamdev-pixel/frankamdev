@@ -11,15 +11,15 @@ const poppins = { fontFamily: "'Poppins', sans-serif" };
 const inter = { fontFamily: "'Inter', sans-serif" };
 
 return (
+  <>
+
 <motion.section
 variants={sectionVariants}
 initial="hidden"
 animate="visible"
-className="relative flex flex-col items-center justify-center min-h-screen px-5 pt-24 pb-12 text-center bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white overflow-hidden"
+className="relative mt-14 flex flex-col items-center justify-center min-h-screen px-5 pt-24 pb-12 text-center bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white overflow-hidden"
 >
 {/* Glow en arrière-plan */} <div className="absolute -top-40 -left-40 w-[400px] h-[400px] bg-green-500/20 rounded-full blur-3xl animate-pulse"></div> <div className="absolute -bottom-40 -right-40 w-[400px] h-[400px] bg-yellow-400/20 rounded-full blur-3xl animate-pulse"></div>
-
-
   {/* Titre principal */}
   <h1
     style={poppins}
@@ -78,6 +78,7 @@ className="relative flex flex-col items-center justify-center min-h-screen px-5 
 </motion.section>
 
 
+</>
 );
 }
 
@@ -94,8 +95,8 @@ className="relative flex flex-col items-center justify-center min-h-screen px-5 
 // ]
 
 // export default function CoursesPage() {
-//   return (
-//     <div className="max-w-4xl mx-auto p-6 space-y-6">
+  //   return (
+    //     <div className="max-w-4xl mx-auto p-6 space-y-6">
 //       <h1 className="text-2xl font-bold">📚 Mes Cours</h1>
 
 //       <div className="grid md:grid-cols-2 gap-6">

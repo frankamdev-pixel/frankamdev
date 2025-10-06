@@ -45,11 +45,7 @@ const mainNavItems: NavItem[] = [
 ];
 
 const rightNavItems: NavItem[] = [
-    {
-        title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
-        icon: Folder,
-    },
+   
     {
         title: 'Documentation',
         href: 'https://laravel.com/docs/starter-kits#react',
@@ -124,7 +120,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                                                             ? item.href
                                                             : item.href.url
                                                     }
-                                                    target="_blank"
+                                                    // target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="flex items-center space-x-2 font-medium"
                                                 >

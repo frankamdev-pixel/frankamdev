@@ -70,30 +70,29 @@ export default function Home() {
                 </section>
 
                 {/* Partenaires */}
-               <section className="mt-6 bg-[#030215] py-16 sm:mt-8 sm:py-20">
-  {/* Texte central */}
-  <div className="mx-auto max-w-4xl text-center px-4 sm:px-6 lg:px-8">
-    <p
-      style={{ fontFamily: "'Inter', sans-serif" }}
-      className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed sm:leading-relaxed"
-    >
-      Ils ont commencé comme{' '}
-      <span
-        style={{ fontFamily: "'Poppins', sans-serif" }}
-        className="text-cyan-300 font-bold text-xl sm:text-2xl md:text-3xl"
-      >
-        Toi
-      </span>
-      , maintenant ils travaillent ici 👇
-    </p>
-  </div>
+                <section className="mt-6 bg-[#030215] py-16 sm:mt-8 sm:py-20">
+                    {/* Texte central */}
+                    <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+                        <p
+                            style={{ fontFamily: "'Inter', sans-serif" }}
+                            className="text-lg leading-relaxed text-gray-300 sm:text-xl sm:leading-relaxed md:text-2xl"
+                        >
+                            Ils ont commencé comme{' '}
+                            <span
+                                style={{ fontFamily: "'Poppins', sans-serif" }}
+                                className="text-xl font-bold text-cyan-300 sm:text-2xl md:text-3xl"
+                            >
+                                Toi
+                            </span>
+                            , maintenant ils travaillent ici 👇
+                        </p>
+                    </div>
 
-  {/* Logos ou partenaires */}
-  <div className="mt-10 flex flex-wrap items-center justify-center gap-6 px-4 sm:px-6 lg:px-12">
-    <Compagnies />
-  </div>
-</section>
-
+                    {/* Logos ou partenaires */}
+                    <div className="mt-10 flex flex-wrap items-center justify-center gap-6 px-4 sm:px-6 lg:px-12">
+                        <Compagnies />
+                    </div>
+                </section>
 
                 <motion.section
                     variants={sectionVariants}
