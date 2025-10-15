@@ -33,8 +33,8 @@
 
  <title inertia>{{ config('app.name', 'Frankamdev') }}</title>
 
- <link rel="icon" href="/favicon.ico" sizes="any">
- <link rel="icon" href="/" type="image/svg+xml">
+ <link rel="icon" href="/banner.jpg" sizes="any">
+ <link rel="icon" href="/banner.jpg" type="image/svg+xml">
  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
  <link rel="preconnect" href="https://fonts.bunny.net">

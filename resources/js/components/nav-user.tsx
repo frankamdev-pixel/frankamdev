@@ -1,11 +1,11 @@
-import {
- IconCreditCard,
- IconDotsVertical,
- IconLogout,
- IconNotification,
- IconUserCircle,
-} from "@tabler/icons-react"
+"use client"
 
+import {
+ IconLogout,
+ IconUserCircle,
+ IconSettings,
+ IconBell,
+} from "@tabler/icons-react"
 import {
  Avatar,
  AvatarFallback,
@@ -28,17 +28,16 @@ import {
 } from "@/components/ui/sidebar"
 import { usePage } from "@inertiajs/react"
 
-export function NavUser({
- user,
-}: {
- user: {
-  name: string
-  email: string
-  avatar: string
- }
-}) {
+export function NavUser() {
  const { isMobile } = useSidebar()
- const { auth } = usePage().props;
+ const { auth } = usePage().props
+
+ const user = auth?.user || {
+  name: "Utilisateur",
+  email: "exemple@email.com",
+  avatar: "/avatars/default.jpg",
+ }
+
  return (
   <SidebarMenu>
    <SidebarMenuItem>
@@ -49,22 +48,22 @@ export function NavUser({
        className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
       >
        <Avatar className="h-8 w-8 rounded-lg grayscale">
-        <AvatarImage src={auth.user.avatar} alt={auth.user.name} />
+        <AvatarImage src={user.avatar} alt={user.name} />
         <AvatarFallback className="rounded-lg">
-
+         {user.name[0]?.toUpperCase()}
         </AvatarFallback>
        </Avatar>
        <div className="grid flex-1 text-left text-sm leading-tight">
-        <span className="truncate font-medium">{auth.user.name}</span>
+        <span className="truncate font-medium">{user.name}</span>
         <span className="text-muted-foreground truncate text-xs">
-         {auth.user.email}
+         {user.email}
         </span>
        </div>
-       <IconDotsVertical className="ml-auto size-4" />
       </SidebarMenuButton>
      </DropdownMenuTrigger>
+
      <DropdownMenuContent
-      className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+      className="min-w-56 rounded-lg"
       side={isMobile ? "bottom" : "right"}
       align="end"
       sideOffset={4}
@@ -72,34 +71,40 @@ export function NavUser({
       <DropdownMenuLabel className="p-0 font-normal">
        <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
         <Avatar className="h-8 w-8 rounded-lg">
-         <AvatarImage src={auth.user.avatar} alt={auth.user.name} />
-         <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+         <AvatarImage src={user.avatar} alt={user.name} />
+         <AvatarFallback className="rounded-lg">
+          {user.name[0]?.toUpperCase()}
+         </AvatarFallback>
         </Avatar>
         <div className="grid flex-1 text-left text-sm leading-tight">
-         <span className="truncate font-medium">{auth.user.name}</span>
+         <span className="truncate font-medium">{user.name}</span>
          <span className="text-muted-foreground truncate text-xs">
           {user.email}
          </span>
         </div>
        </div>
       </DropdownMenuLabel>
+
       <DropdownMenuSeparator />
+
       <DropdownMenuGroup>
        <DropdownMenuItem>
         <IconUserCircle />
-        Compte
+        Profil
        </DropdownMenuItem>
        <DropdownMenuItem>
-        <IconCreditCard />
-        Billing
+        <IconSettings />
+        Paramètres
        </DropdownMenuItem>
        <DropdownMenuItem>
-        <IconNotification />
+        <IconBell />
         Notifications
        </DropdownMenuItem>
       </DropdownMenuGroup>
+
       <DropdownMenuSeparator />
-      <DropdownMenuItem>
+
+      <DropdownMenuItem className="text-red-600 focus:text-red-600">
        <IconLogout />
        Déconnexion
       </DropdownMenuItem>

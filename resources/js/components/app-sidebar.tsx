@@ -32,127 +32,32 @@ import {
 } from "@/components/ui/sidebar"
 import { usePage } from "@inertiajs/react"
 
-const data = {
- user: {
-  name: "shadcn",
-  email: "m@example.com",
-  avatar: "/avatars/shadcn.jpg",
- },
- navMain: [
-  {
-   title: "Dashboard",
-   url: "#",
-   icon: IconDashboard,
-  },
-  {
-   title: "Lifecycle",
-   url: "#",
-   icon: IconListDetails,
-  },
-  {
-   title: "Analytics",
-   url: "#",
-   icon: IconChartBar,
-  },
-  {
-   title: "Projects",
-   url: "#",
-   icon: IconFolder,
-  },
-  {
-   title: "Team",
-   url: "#",
-   icon: IconUsers,
-  },
- ],
- navClouds: [
-  {
-   title: "Capture",
-   icon: IconCamera,
-   isActive: true,
-   url: "#",
-   items: [
-    {
-     title: "Active Proposals",
-     url: "#",
-    },
-    {
-     title: "Archived",
-     url: "#",
-    },
-   ],
-  },
-  {
-   title: "Proposal",
-   icon: IconFileDescription,
-   url: "#",
-   items: [
-    {
-     title: "Active Proposals",
-     url: "#",
-    },
-    {
-     title: "Archived",
-     url: "#",
-    },
-   ],
-  },
-  {
-   title: "Prompts",
-   icon: IconFileAi,
-   url: "#",
-   items: [
-    {
-     title: "Active Proposals",
-     url: "#",
-    },
-    {
-     title: "Archived",
-     url: "#",
-    },
-   ],
-  },
- ],
- navSecondary: [
-  {
-   title: "Settings",
-   url: "#",
-   icon: IconSettings,
-  },
-  {
-   title: "Get Help",
-   url: "#",
-   icon: IconHelp,
-  },
-  {
-   title: "Search",
-   url: "#",
-   icon: IconSearch,
-  },
- ],
- documents: [
-  {
-   name: "Data Library",
-   url: "#",
-   icon: IconDatabase,
-  },
-  {
-   name: "Reports",
-   url: "#",
-   icon: IconReport,
-  },
-  {
-   name: "Word Assistant",
-   url: "#",
-   icon: IconFileWord,
-  },
- ],
-}
-
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
- const { auth } = usePage().props;
+ const { auth } = usePage().props
+
+ const data = {
+  navMain: [
+   { title: "Tableau de bord", url: "/dashboard", icon: IconDashboard },
+   { title: "Cycle de vie", url: "/lifecycle", icon: IconListDetails },
+   { title: "Statistiques", url: "/stats", icon: IconChartBar },
+   { title: "Cours", url: "/courses", icon: IconFolder },
+   { title: "Équipe", url: "/team", icon: IconUsers },
+  ],
+  navSecondary: [
+   { title: "Paramètres", url: "/settings/profile", icon: IconSettings },
+   { title: "Aide", url: "/help", icon: IconHelp },
+   { title: "Recherche", url: "/search", icon: IconSearch },
+  ],
+  documents: [
+   { name: "Bibliothèque de données", url: "/data", icon: IconDatabase },
+   { name: "Rapports", url: "/reports", icon: IconReport },
+   { name: "Assistant Word", url: "/word-assistant", icon: IconFileWord },
+  ],
+ }
+
  return (
   <Sidebar collapsible="offcanvas" {...props}>
+   {/* ==== En-tête ==== */}
    <SidebarHeader>
     <SidebarMenu>
      <SidebarMenuItem>
@@ -160,21 +65,28 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
        asChild
        className="data-[slot=sidebar-menu-button]:!p-1.5"
       >
-       <a href="#">
+       <a href="/dashboard">
         <IconInnerShadowTop className="!size-5" />
-        <span className="text-base font-semibold">FrankamDev.</span>
+        <span className="text-base font-semibold">
+         FrankamDev
+         <span className="text-2xl text-cyan-600">.</span>
+        </span>
        </a>
       </SidebarMenuButton>
      </SidebarMenuItem>
     </SidebarMenu>
    </SidebarHeader>
+
+   {/* ==== Contenu principal ==== */}
    <SidebarContent>
     <NavMain items={data.navMain} />
     <NavDocuments items={data.documents} />
     <NavSecondary items={data.navSecondary} className="mt-auto" />
    </SidebarContent>
+
+   {/* ==== Pied (infos utilisateur connecté) ==== */}
    <SidebarFooter>
-    <NavUser user={data.user} />
+    <NavUser user={auth} />
    </SidebarFooter>
   </Sidebar>
  )
